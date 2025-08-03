@@ -1,0 +1,3 @@
+venv/
+# Ignore FastF1 cache
+app/data/

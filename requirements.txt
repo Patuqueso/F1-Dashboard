@@ -1,0 +1,7 @@
+# ===========================
+# requirements.txt
+# ===========================
+fastf1
+streamlit
+matplotlib
+pandas
