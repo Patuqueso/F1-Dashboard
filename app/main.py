@@ -1,7 +1,7 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
+from f1data.ghost import get_ghost_data, plot_ghost
 import streamlit as st
 import fastf1
 import datetime
@@ -21,7 +21,6 @@ current_year = datetime.datetime.now().year
 seasons = list(range(2018, current_year + 1))
 season = st.selectbox("Season", seasons, index=len(seasons) - 1)
 
-@st.cache_data
 @st.cache_data
 def get_race_schedule(season):
     schedule = fastf1.get_event_schedule(season)
@@ -109,6 +108,10 @@ if race_choice:
                 ax2.set_title("Time Delta by Distance")
                 ax2.grid(True)
                 st.pyplot(fig2)
+                
+                ghost1, ghost2 = get_ghost_data(tel1, tel2)
+                plot_ghost(ghost1, ghost2, d1, d2)
+
 
         except Exception as e:
             st.text(traceback.format_exc())
